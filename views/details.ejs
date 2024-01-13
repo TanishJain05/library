@@ -1,0 +1,115 @@
+<%-include("header.ejs")%>
+<div>
+        <div class="menu_container">
+            <ul class="menu_bar">
+                <li class="menu_items val">Tanish's Library</li>
+                <li class="menu_items"><img src="/static/images/logo.png" alt="logo"></li>
+            </ul>
+        </div>
+        <div class="description">
+            <div class="main-container">
+                <div> 
+                    <form action="/delete/<%=item.isbn%>" method="get" id="deleteForm">
+                        <img src="/static/assets/delete.svg" alt="delete button" class="icon delete_icon">
+                    </form>
+                </div>
+                <div class="float-container">
+                    <img src="https://covers.openlibrary.org/b/isbn/<%=item.isbn%>-M.jpg" alt="" class="big_image">
+                    <ul>
+                        <li class="inner-list title-bar" >
+                            <span id="titletitle<%=item.isbn%>" class="title-bar"><%=item.title%></span>
+                            <form class="edit" action="/edit/<%=item.isbn%>" method="post">
+                                <input type="hidden" name="query" value="title">
+                                <input id="titleinput<%=item.isbn%>" type="text" name="updatedValue" value="<%= item.title %>" autocomplete="off"
+                                autofocus="true" hidden="true" class="placeholder-class"/>
+                                <button id="titledone<%=item.isbn%>" class="edit icon-button" type="submit" hidden><img class="icon"
+                                    src="/static/assets/check-solid.svg" alt="tick image"></button>
+                            </form>
+                            <button class="icon-button" id="titleedit<%=item.isbn%>" class="edit" onclick="handler('title','<%=item.isbn%>')">
+                                <img class="icon" src="/static/assets/pencil-solid.svg" alt="pencil image">
+                            </button>
+                        </li>
+                        <li class="inner-list">
+                            <span id="isbntitle<%=item.isbn%>">ISBN: <%=item.isbn%></span>
+                        </li>
+                        <li class="inner-list">
+                            <span id="datetitle<%=item.isbn%>">Date: <%=item.date.getDate()%>-<%=item.date.getMonth() + 1%>-<%=item.date.getFullYear();%></span>
+                            <form class="edit" action="/edit/<%=item.isbn%>" method="post">
+                                <input type="hidden" name="query" value="date">
+                                <input id="dateinput<%=item.isbn%>" type="text" name="updatedValue" value="<%=item.date.getDate()%>-<%=item.date.getMonth() + 1%>-<%=item.date.getFullYear();%>" autocomplete="off"
+                                autofocus="true" hidden="true" class="placeholder-class"/>
+                                <button id="datedone<%=item.isbn%>" class="edit icon-button" type="submit" hidden><img class="icon"
+                                    src="/static/assets/check-solid.svg" alt="tick image"></button>
+                            </form>
+                            <button class="icon-button" id="dateedit<%=item.isbn%>" class="edit" onclick="handler('date','<%=item.isbn%>')">
+                                <img class="icon" src="/static/assets/pencil-solid.svg" alt="pencil image">
+                            </button>
+                        </li>
+                        <li class="inner-list">
+                            <span id="ratingtitle<%=item.isbn%>">Rating: <%=item.rating%></span>
+                            <form class="edit" action="/edit/<%=item.isbn%>" method="post">
+                                <input type="hidden" name="query" value="rating">
+                                <input id="ratinginput<%=item.isbn%>" type="text" name="updatedValue" value="<%= item.rating %>" autocomplete="off"
+                                autofocus="true" hidden="true" class="placeholder-class"/>
+                                <button id="ratingdone<%=item.isbn%>" class="edit icon-button" type="submit" hidden><img class="icon"
+                                    src="/static/assets/check-solid.svg" alt="tick image"></button>
+                            </form>
+                            <button class="icon-button" id="ratingedit<%=item.isbn%>" class="edit" onclick="handler('rating','<%=item.isbn%>')">
+                                <img class="icon" src="/static/assets/pencil-solid.svg" alt="pencil image">
+                            </button>
+                        </li>
+                        <li class="inner-list">
+                            <span id="authortitle<%=item.isbn%>">Author: <%=item.author%></span>
+                            <form class="edit" action="/edit/<%=item.isbn%>" method="post">
+                                <input type="hidden" name="query" value="author">
+                                <input id="authorinput<%=item.isbn%>" type="text" name="updatedValue" value="<%= item.author %>" autocomplete="off"
+                                autofocus="true" hidden="true" class="placeholder-class"/>
+                                <button id="authordone<%=item.isbn%>"  class="edit icon-button" type="submit" hidden><img class="icon"
+                                    src="/static/assets/check-solid.svg" alt="tick image"></button>
+                            </form>
+                            <button class="icon-button" id="authoredit<%=item.isbn%>" class="edit" onclick="handler('author','<%=item.isbn%>')">
+                                <img class="icon" src="/static/assets/pencil-solid.svg" alt="pencil image">
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div style="position: relative;">
+                    <div style="display: flex; justify-content: center;">
+                        <h1 style="color: aliceblue;text-align: center;">MY NOTES</h1>
+                        <button class="icon-button" id="notesedit<%=item.isbn%>" class="edit" onclick="handler('notes','<%=item.isbn%>')">
+                            <img class="icon" src="/static/assets/pencil-solid.svg" alt="pencil image">
+                        </button>
+                    </div>
+                    <hr>
+                    <p id="notestitle<%=item.isbn%>"><%=item.notes%></p>
+                    <form class="edit" action="/edit/<%=item.isbn%>" method="post">
+                        <input type="hidden" name="query" value="notes">
+                        <textarea id="notesinput<%=item.isbn%>" name="updatedValue" value="<%=item.notes%>" autocomplete="off" autofocus="true" 
+                        hidden="true" class="placeholder-class" style="height: 200px; color: black;"><%=item.notes%></textarea>
+                        <button id="notesdone<%=item.isbn%>"  class="edit icon-button" type="submit" hidden><img class="icon"
+                        src="/static/assets/check-solid.svg" alt="tick image"></button>
+                    </form>
+                </div> 
+                
+            
+            </div>
+        </div>
+        
+    <script>
+        function handler(frontPart,id) {
+            document.getElementById(frontPart+"title" + id).setAttribute("hidden", true)
+            document.getElementById(frontPart+"edit" + id).setAttribute("hidden", true)
+            document.getElementById(frontPart+"done" + id).removeAttribute("hidden")
+            document.getElementById(frontPart+"input" + id).removeAttribute("hidden")
+        }
+        const d=document.querySelector(".delete_icon");
+        const deleteForm=document.querySelector("#deleteForm");
+        d.addEventListener("click",(req,res)=>{
+            let result=confirm("Are you shure you want to permanently delete the book?");
+            if(result===true){
+                deleteForm.submit();
+                alert("Item deleted successfully");
+            }           
+        })
+      </script>
+<%-include("footer.ejs")%>

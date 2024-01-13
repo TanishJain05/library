@@ -1,0 +1,91 @@
+<%-include("header.ejs")%>
+    <div class="container">
+        <div class="outer-container">
+            <div class="menu_container">
+                <ul class="menu_bar">
+                    <li class="menu_items val">Tanish's Library</li>
+                    <li class="menu_items"><img src="/static/images/logo.png" alt="logo"></li>
+                </ul>
+            </div>
+            <main>
+
+            </main>
+            <div class="corousal-container">
+                <button class="corousal_button is-hidden" id="left"><img src="/static/images/left.png" alt="Left Button" class="pointer"></button>
+                <div class="corousal_images-container">
+                    <ul class="corousal-images">
+                        <%for(let i=0;i<4;i++){%>
+                            <li class="images current">
+                                <div class="inner-container">
+                                    <img src="https://covers.openlibrary.org/b/isbn/<%=images[i].isbn%>-L.jpg" alt="Error Image" class="inner-image">
+                                    <div>
+                                        <h2 class="inner-label">Top Recommendation</h2>
+                                        <ul class="information">
+                                            <li class="inner-list">Title: <%=images[i].title%></li>
+                                            <li class="inner-list">ISBN: <%=images[i].isbn%></li>
+                                            <li class="inner-list">Date: <%=images[i].date.getDate()%>-<%=images[i].date.getMonth() + 1%>-<%=images[i].date.getFullYear();%></li>
+                                            <li class="inner-list">Rating: <%=images[i].rating%></li>
+                                        </ul>
+                                    </div> 
+                                </div>
+                            </li>
+                        <%}%>
+                    </ul>
+                </div>
+                <button class="corousal_button" id="right"><img src="/static/images/right.png" alt="Right Button" class="pointer"></button>
+            </div>
+            <div class="corousal_nav">
+                <button class="nav_button current"></button>
+                <button class="nav_button"></button>
+                <button class="nav_button"></button>
+                <button class="nav_button"></button>
+            </div>
+        </div>
+        <div class="middle-container">
+            <h2 style="color: aliceblue; margin-left: 2rem; ">OTHER BOOKS</h2>
+            <div>
+                <div class="checkbox-container hidden-class" >
+                    <form action="/filter" method="post" id="filterForm">
+                        <label class="checkbox-inner-container">Rating
+                            <input name="rating" type="checkbox" id="ratingCheckbox">
+                            <span class="checkmark"></span>
+                          </label>
+                        <label class="checkbox-inner-container">Recency
+                            <input type="checkbox" name="recency" id="recencyCheckbox">
+                            <span class="checkmark"></span>
+                          </label>
+                    </form>
+                    </div>
+                <button type="submit" class="filter"><img src="/static/images/filter.png" alt="Error Image" ></button>
+            </div>
+            
+        </div>
+        <div class="bottom-container">
+            <%for(let i=0;i<images.length;i++){%>
+                <div class="cards">
+                    <img src="https://covers.openlibrary.org/b/isbn/<%=images[i].isbn%>-M.jpg" alt="Error Image" class="card-image">
+                    <div>
+                        <h3 class="inner-label card"><a href='/details/<%=images[i].isbn%>'><%=images[i].title%></a></h3>
+                    </div>
+                    
+                </div>
+            <%}%>
+            <form action="/add" method="get">
+                <div class="cards">
+                    <button type="submit" class="card-image" style="height: 80%;"><img src="/static/images/add.png" alt="Error Image" ></button>
+                    <h3 class="inner-label card">Add book</h3>
+                </div>
+            </form>
+            
+        </div>
+        <div class="menu_container footer-container">
+            <ul class="menu_bar footer_bar">
+                <li class="menu_items footer_items"><img src="/static/images/linkedin.png"><a href="https://www.linkedin.com/in/tanish-jain-5a0347170
+                    ">LinkedIn</a></li>
+                <li class="menu_items footer_items"><img src="/static/images/copyright.png">Tanish Jain</li>
+            </ul>
+        </div>
+    </div>
+    <script src="/static/assets/corousel.js"></script>
+    <script src="/static/assets/main.js"></script>
+<%-include("footer.ejs")%>

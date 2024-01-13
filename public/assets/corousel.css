@@ -1,0 +1,73 @@
+.corousal-container{
+    position: relative;
+    height: 25rem;
+    width: 80%;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 600px){
+    .corousal-container{
+        
+        height: 15rem;
+    }
+}
+.corousal_images-container{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.corousal-images{
+    padding: 10px;
+    list-style: none;
+    position: relative;
+    height: 100%;
+    transition: transform 250ms ease-in;
+}
+.images{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+.corousal_button{
+    position: absolute;
+    top: 50%;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+#left{
+    left: -30px;
+}
+#right{
+    right: -45px;
+}
+#left>img{
+    width: 20px;
+    height: 20px;
+}
+#right>img{
+    width: 20px;
+    height: 20px;
+}
+.corousal_nav{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+.nav_button{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0,0,0,.1);
+    margin: 0 0.2rem;
+    border: 0;
+}
+.nav_button.current{
+    background-color: rgba(0,0,0,.8);
+}
+
+.is-hidden{
+    display: none;
+}

@@ -1,0 +1,14 @@
+<%-include("header.ejs")%>
+<div class="add">
+  <h1>Add a New Book</h1>
+  <form action="/add" method="post" class="add-container">
+    <input type="text" name="name" placeholder="ISBN NUMBER">
+    <input type="text" name="name" placeholder="BOOK TITLE">
+    <input type="text" name="name" placeholder="<%=new Date()%>">
+    <input type="text" name="name" placeholder="RATING (Out of 10)">
+    <input type="text" name="name" placeholder="AUTHOR">
+    <textarea class="inner-textarea" name="name" placeholder="Enter Your Notes Here"></textarea>
+    <button type="submit">Add</button>
+  </form>
+</div>
+<%-include("footer.ejs")%>

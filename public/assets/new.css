@@ -1,0 +1,31 @@
+.add {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  transform: translate(-35%, -35%);
+  font-family: "Roboto";
+  color: #ffffff;
+   background-color: #330e33;
+}
+.add-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 40rem;
+    flex-wrap: wrap;
+}
+.add-container>input{
+    width: 100%;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+.inner-textarea{
+    height: 10rem;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+@media only screen and (max-width: 600px){
+    .add-container{
+        width: 100%;
+    }
+}
